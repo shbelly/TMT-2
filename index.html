@@ -21,6 +21,8 @@
     canvas.height = window.innerHeight - 20;
     let context = canvas.getContext('2d');
 
+    alert(canvas.width, canvas.height);
+
     function random(max) {
         return Math.floor(Math.random() * Math.floor(max));
     }
@@ -117,6 +119,11 @@
             }
         }
     });
+    
+    window.onerror = function(msg, url, linenumber) {
+        alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+        return true;
+    }
 
     </script>
 </html>
