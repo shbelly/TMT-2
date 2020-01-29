@@ -83,7 +83,8 @@
             else
                 context.lineTo(circle.x, circle.y);
         }
-        context.strokeStyle = 'rgb(0, 0, 0)';
+        context.lineWidth = 4;
+        context.strokeStyle = 'rgb(46, 46, 46)';
         context.stroke();
 
         for(const circle of circles){
@@ -116,7 +117,8 @@
                 if (circles[i].correct == true) {
                     circles[i].correct = false;
                     let next = parseInt(i) + 1;
-                    circles[next].correct = true;
+                    if (circles.length != next)
+                        circles[next].correct = true;
                     circles[i].color = 'rgb(24, 140, 119)';
                     trail.push(circles[i]);
                     draw();
