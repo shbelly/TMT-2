@@ -17,11 +17,9 @@
     let radius = 40;
 
     let canvas = document.getElementById('canvas');
-    canvas.width = window.innerWidth - 20;
-    canvas.height = window.innerHeight - 20;
+    canvas.width = window.innerWidth-3.1;
+    canvas.height = window.innerHeight-3.1;
     let context = canvas.getContext('2d');
-
-    alert(canvas.width, canvas.height);
 
     function random(max) {
         return Math.floor(Math.random() * Math.floor(max));
@@ -61,18 +59,23 @@
     for (i = 0; i < 8; i++){
         const point = get_point(circles);
         circles.push({
-            id: get_id(i), 
+            id: get_id(i),
+            correct: false,
             x: point.x, 
             y: point.y, 
             radius: radius,
-            color: 'rgb(0, 100, 255)',
+            color: 'rgb(48, 77, 115)',
             path: new Path2D()
         });
     }
 
+    circles[0].correct = true;
+
     function draw() {
-        context.lineWidth = 2;
         context.clearRect(0, 0, canvas.width, canvas.height);
+
+        context.fillStyle = "rgb(220,220,220)";
+        context.fillRect(0, 0, canvas.width, canvas.height);
 
         for(const [index, circle] of trail.entries()){
             if(index==0)
@@ -87,15 +90,12 @@
             //context.beginPath();
             circle.path.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, true);
 
-            context.fillStyle = 'rgb(255, 250, 250)';
+            context.fillStyle = circle.color;
             context.fill(circle.path);
 
-            context.fillStyle = 'rgb(0, 0, 0)';
-            context.font = '24px helvetica';
+            context.fillStyle = 'rgb(230, 230, 230)';
+            context.font = '24px lato, sans-serif';
             context.fillText(circle.id, circle.x - 24/3, circle.y + 24/3); //  number/letter
-
-            context.strokeStyle = circle.color;
-            context.stroke(circle.path);
         };
     }
 
@@ -111,19 +111,24 @@
             y: e.clientY
         };
 
-        for(const circle of circles) { 
-            if (intersects(point, circle)) {
-                trail.push(circle);
-                circle.color = 'rgb(255, 0, 0)';
-                draw();
+        for(const i in circles) { 
+            if (intersects(point, circles[i])) {
+                if (circles[i].correct == true) {
+                    circles[i].correct = false;
+                    let next = parseInt(i) + 1;
+                    circles[next].correct = true;
+                    circles[i].color = 'rgb(24, 140, 119)';
+                    trail.push(circles[i]);
+                    draw();
+                } else {
+                    circles[i].color = 'rgb(191, 137, 0)';
+                    trail.push(circles[i]);
+                    draw();
+                    // stop test
+                }
             }
         }
     });
     
-    window.onerror = function(msg, url, linenumber) {
-        alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
-        return true;
-    }
-
     </script>
 </html>
