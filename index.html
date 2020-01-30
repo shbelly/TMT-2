@@ -51,7 +51,7 @@
     }
 
     function get_id(i){
-        return i + 1 // do stuff here later
+        return i * 2; //Math.pow(i, 2); // do stuff here later
     }
 
     let circles = [];
@@ -74,7 +74,7 @@
     function draw() {
         context.clearRect(0, 0, canvas.width, canvas.height);
 
-        context.fillStyle = "rgb(220,220,220)";
+        context.fillStyle = "rgb(60,60,60)";
         context.fillRect(0, 0, canvas.width, canvas.height);
 
         for(const [index, circle] of trail.entries()){
