@@ -96,10 +96,8 @@
 
             context.fillStyle = 'rgb(230, 230, 230)';
             context.font = '24px lato, sans-serif';
-            if(circle.id < 10)
-                context.fillText(circle.id, circle.x - 24/3, circle.y + 24/3); //  number/letter
-            else
-                context.fillText(circle.id, circle.x - 14, circle.y + 8); //  number/letter
+            let text = context.measureText(circle.id);
+            context.fillText(circle.id, circle.x - text.width/2.0, circle.y + 24/3); //  number/letter
 
         };
     }
@@ -109,11 +107,11 @@
     function intersects(point, circle) {
         return Math.sqrt((point.x - circle.x) ** 2 + (point.y - circle.y) ** 2) < circle.radius;
     }
-
-    canvas.addEventListener('click', (e) => {
+    
+    function click_handler(event) {
         const point = {
-            x: e.clientX,
-            y: e.clientY
+            x: event.clientX,
+            y: event.clientY
         };
 
         for(const i in circles) { 
@@ -130,11 +128,19 @@
                     circles[i].color = 'rgb(191, 137, 0)';
                     trail.push(circles[i]);
                     draw();
+
+                    context.font = '72px lato, sans-serif';
+                    let text = context.measureText("Failure");
+
+                    context.fillText("Failure", canvas.width/2.0 - text.width/2.0, 200);
+                    canvas.removeEventListener('click', click_handler);
                     // stop test
                 }
             }
         }
-    });
-    
+    }
+
+    canvas.addEventListener('click', click_handler);
+
     </script>
 </html>
