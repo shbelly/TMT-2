@@ -84,7 +84,7 @@
                 context.lineTo(circle.x, circle.y);
         }
         context.lineWidth = 4;
-        context.strokeStyle = 'rgb(46, 46, 46)';
+        context.strokeStyle = 'rgb(36, 36, 36)';
         context.stroke();
 
         for(const circle of circles){
@@ -96,7 +96,11 @@
 
             context.fillStyle = 'rgb(230, 230, 230)';
             context.font = '24px lato, sans-serif';
-            context.fillText(circle.id, circle.x - 24/3, circle.y + 24/3); //  number/letter
+            if(circle.id < 10)
+                context.fillText(circle.id, circle.x - 24/3, circle.y + 24/3); //  number/letter
+            else
+                context.fillText(circle.id, circle.x - 14, circle.y + 8); //  number/letter
+
         };
     }
 
