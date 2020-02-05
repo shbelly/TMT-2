@@ -17,6 +17,8 @@
     let radius = 40;
 
     let canvas = document.getElementById('canvas');
+    canvas.requestFullScreen();
+
     canvas.width = window.innerWidth-3.1;
     canvas.height = window.innerHeight-3.1;
     let context = canvas.getContext('2d');
