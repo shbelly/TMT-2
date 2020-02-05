@@ -1,8 +1,6 @@
-    let radius = 40;
+let radius = 40;
 
-    let canvas = document.getElementById('canvas');
-    let start = document.getElementById('start')
-    start.addEventListener('click', function(event) {
+function get_started(event) {
         let canvas = document.getElementById('canvas');
 
         var el = document.documentElement;
@@ -14,6 +12,8 @@
         let screen = fullScreen.call(canvas);
 
     screen.then(function(){
+        alert('what the fuck firefox');
+
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         let context = canvas.getContext('2d');
@@ -139,4 +139,9 @@
 
         canvas.addEventListener('click', click_handler);
     });
-    });
+
+}
+
+let start = document.getElementById('start')
+start.addEventListener('click', get_started);
+start.addEventListener('touchstart', get_started);
