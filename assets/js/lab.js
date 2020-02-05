@@ -12,8 +12,7 @@ function get_started(event) {
         let screen = fullScreen.call(canvas);
 
     screen.then(function(){
-        alert('what the fuck firefox');
-
+        
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         let context = canvas.getContext('2d');
