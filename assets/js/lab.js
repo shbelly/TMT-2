@@ -4,16 +4,16 @@
     let start = document.getElementById('start')
     start.addEventListener('click', function(event) {
         let canvas = document.getElementById('canvas');
-        var screen;
-        if(canvas.requestFullScreen)
-            screen = canvas.requestFullScreen();
-        else if(canvas.webkitRequestFullScreen)
-            screen = canvas.webkitRequestFullScreen();
-        else if(canvas.mozRequestFullScreen)
-            screen = canvas.mozRequestFullScreen();
+
+        var el = document.documentElement;
+        var fullScreen = el.requestFullscreen
+          || el.webkitRequestFullScreen
+          || el.mozRequestFullScreen
+          || el.msRequestFullscreen;
+        
+        let screen = fullScreen.call(canvas);
 
     screen.then(function(){
-
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         let context = canvas.getContext('2d');
