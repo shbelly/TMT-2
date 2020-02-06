@@ -146,3 +146,7 @@ function get_started(event) {
 let start = document.getElementById('start')
 start.addEventListener('mouseup', get_started);
 start.addEventListener('touchend', get_started);
+window.addEventListener('onerror', function(msg, url, linenumber){
+    alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+    return true;
+});
