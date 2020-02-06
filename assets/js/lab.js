@@ -1,6 +1,7 @@
 let radius = 40;
 
 function get_started(event) {
+    console.log('click');
         let canvas = document.getElementById('canvas');
 
         var el = document.documentElement;
@@ -14,7 +15,7 @@ function get_started(event) {
     window.addEventListener('resize', resizeCanvas, false);
 
     function resizeCanvas(){
-        
+        console.log('resize');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         let context = canvas.getContext('2d');
@@ -146,7 +147,6 @@ function get_started(event) {
 let start = document.getElementById('start')
 start.addEventListener('mouseup', get_started);
 start.addEventListener('touchend', get_started);
-window.addEventListener('onerror', function(msg, url, linenumber){
-    alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
-    return true;
-});
+window.onerror = function(msg, url, linenumber){
+    console.log('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+}
