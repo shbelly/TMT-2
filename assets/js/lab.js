@@ -144,5 +144,5 @@ function get_started(event) {
 }
 
 let start = document.getElementById('start')
-start.addEventListener('click', get_started);
-start.addEventListener('touchstart', get_started);
+start.addEventListener('mouseup', get_started);
+//start.addEventListener('touchstart', get_started);
