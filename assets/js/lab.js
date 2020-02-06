@@ -9,9 +9,11 @@ function get_started(event) {
           || el.mozRequestFullScreen
           || el.msRequestFullscreen;
         
-        let screen = fullScreen.call(canvas);
+        fullScreen.call(canvas);
 
-    screen.then(function(){
+    window.addEventListener('resize', resizeCanvas, false);
+
+    function resizeCanvas(){
         
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -137,7 +139,7 @@ function get_started(event) {
         }
 
         canvas.addEventListener('click', click_handler);
-    });
+    }
 
 }
 
