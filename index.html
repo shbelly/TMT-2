@@ -45,17 +45,20 @@ let radius = 40;
 
 function get_started(event) {
     console.log('click');
-        let canvas = document.getElementById('canvas');
+    let canvas = document.getElementById('canvas');
 
-        var el = document.documentElement;
-        var fullScreen = el.requestFullscreen
-          || el.webkitRequestFullScreen
-          || el.mozRequestFullScreen
-          || el.msRequestFullscreen;
-        
-        fullScreen.call(canvas);
+    var el = document.documentElement;
+    var fullScreen = el.requestFullscreen
+      || el.webkitRequestFullScreen
+      || el.mozRequestFullScreen
+      || el.msRequestFullscreen;
+
+    fullScreen.call(canvas);
 
     window.addEventListener('resize', resizeCanvas, false);
+
+    // Call it once immediately so canvas is initialized now
+    resizeCanvas();
 
     function resizeCanvas(){
         console.log('resize');
@@ -63,6 +66,8 @@ function get_started(event) {
         canvas.height = window.innerHeight;
         let context = canvas.getContext('2d');
 
+    }
+}
         function random(max) {
             return Math.floor(Math.random() * Math.floor(max));
         }
