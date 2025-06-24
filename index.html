@@ -50,6 +50,7 @@
 
         function get_started(event) {
             console.log('click');
+            document.querySelector('.splash-container').style.display = 'none';
 
             var el = document.documentElement;
             var fullScreen = el.requestFullscreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;
